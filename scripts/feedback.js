@@ -5,6 +5,7 @@
 
     var GOOGLE_REVIEW_URL = 'https://www.google.com/maps/place//data=!4m3!3m2!1s0x2d2dabf6cb6037b3:0x42c4cfb114791e9c!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2';
     var REDIRECT_DELAY_MS = 1200;
+    var ADVANCE_DELAY_MS = 450; // long enough to see the star fill and read the caption
     var MIN_FILL_TIME_MS = 3000; // anything faster than this is a bot, not a customer
 
     var CAPTIONS = {
@@ -35,8 +36,6 @@
     var starsWrap = document.getElementById('stars');
     var starInputs = Array.prototype.slice.call(document.querySelectorAll('.fb-stars__input'));
     var caption = document.getElementById('rating-caption');
-    var continueBtn = document.getElementById('rating-continue');
-    var continueText = document.getElementById('rating-continue-text');
 
     var backBtn = document.getElementById('feedback-back');
     var form = document.getElementById('feedback-form');
@@ -50,6 +49,8 @@
     var googleLink = document.getElementById('google-link');
 
     var selectedRating = 0;
+    var advancing = false;        // guards against a double-tap firing the route twice
+    var pointerSelected = false;  // true when the change came from a tap/click, not the keyboard
 
     googleLink.href = GOOGLE_REVIEW_URL;
 
@@ -76,6 +77,30 @@
 
     // --- Step 1: rating -----------------------------------------------------
 
+    // Sends the customer down one of the two paths. 5 stars goes public on Google,
+    // everything else opens the private form.
+    function route() {
+        if (!selectedRating || advancing) return;
+        advancing = true;
+
+        window.setTimeout(function () {
+            if (selectedRating === 5) {
+                showStep('redirect');
+                window.setTimeout(function () {
+                    window.location.href = GOOGLE_REVIEW_URL;
+                }, REDIRECT_DELAY_MS);
+                return;
+            }
+
+            promptTitle.textContent = PROMPTS[selectedRating];
+            pillStars.textContent = starString(selectedRating);
+            pillLabel.textContent = selectedRating + ' out of 5';
+            showStep('feedback');
+            messageEl.focus({ preventScroll: true });
+            advancing = false;
+        }, ADVANCE_DELAY_MS);
+    }
+
     starInputs.forEach(function (input) {
         var value = parseInt(input.value, 10);
         var label = document.querySelector('label[for="' + input.id + '"]');
@@ -84,36 +109,34 @@
             selectedRating = value;
             setFill(value);
             caption.textContent = CAPTIONS[value];
-            continueBtn.disabled = false;
-            continueText.textContent = value === 5 ? 'Leave a Google review' : 'Continue';
+
+            // A tap or click is a decision, so route straight away. A keyboard arrow
+            // key is just browsing the options, so wait for Enter instead - otherwise
+            // keyboard users get thrown to the next screen on their first keypress.
+            if (pointerSelected) {
+                pointerSelected = false;
+                route();
+            }
         });
+
+        label.addEventListener('pointerdown', function () { pointerSelected = true; });
 
         // Hover preview on pointer devices only; reverts to the selection on leave.
         label.addEventListener('mouseenter', function () { setFill(value); });
         label.addEventListener('mouseleave', function () { setFill(selectedRating); });
     });
 
-    continueBtn.addEventListener('click', function () {
-        if (!selectedRating) return;
-
-        if (selectedRating === 5) {
-            showStep('redirect');
-            window.setTimeout(function () {
-                window.location.href = GOOGLE_REVIEW_URL;
-            }, REDIRECT_DELAY_MS);
-            return;
+    starsWrap.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' && selectedRating) {
+            event.preventDefault();
+            route();
         }
-
-        promptTitle.textContent = PROMPTS[selectedRating];
-        pillStars.textContent = starString(selectedRating);
-        pillLabel.textContent = selectedRating + ' out of 5';
-        showStep('feedback');
-        messageEl.focus({ preventScroll: true });
     });
 
     // --- Step 2: written feedback ------------------------------------------
 
     backBtn.addEventListener('click', function () {
+        advancing = false;
         showStep('rating');
     });
 
@@ -135,6 +158,7 @@
     // page frozen on the "redirecting..." spinner. Send them back to the start instead.
     window.addEventListener('pageshow', function (event) {
         if (event.persisted && !steps.redirect.hidden) {
+            advancing = false;
             showStep('rating');
         }
     });

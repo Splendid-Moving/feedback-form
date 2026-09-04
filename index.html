@@ -25,11 +25,13 @@
 <body>
     <div class="fb-bg" aria-hidden="true"></div>
 
-    <main class="fb-page">
+    <header class="fb-header">
         <a href="https://splendidmoving.com" class="fb-logo">
             <img src="assets/images/brand-logo.png" alt="Splendid Moving">
         </a>
+    </header>
 
+    <main class="fb-page">
         <div class="fb-card">
 
             <!-- ================= STEP 1: Star rating ================= -->
@@ -47,7 +49,7 @@
                         <span class="sr-only">1 star</span>
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.32l-5.8 3.05 1.11-6.46-4.7-4.58 6.49-.95L12 2.5z" />
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
                         </svg>
                     </label>
 
@@ -56,7 +58,7 @@
                         <span class="sr-only">2 stars</span>
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.32l-5.8 3.05 1.11-6.46-4.7-4.58 6.49-.95L12 2.5z" />
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
                         </svg>
                     </label>
 
@@ -65,7 +67,7 @@
                         <span class="sr-only">3 stars</span>
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.32l-5.8 3.05 1.11-6.46-4.7-4.58 6.49-.95L12 2.5z" />
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
                         </svg>
                     </label>
 
@@ -74,7 +76,7 @@
                         <span class="sr-only">4 stars</span>
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.32l-5.8 3.05 1.11-6.46-4.7-4.58 6.49-.95L12 2.5z" />
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
                         </svg>
                     </label>
 
@@ -83,20 +85,14 @@
                         <span class="sr-only">5 stars</span>
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.32l-5.8 3.05 1.11-6.46-4.7-4.58 6.49-.95L12 2.5z" />
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
                         </svg>
                     </label>
                 </fieldset>
 
                 <p class="fb-stars__caption" id="rating-caption" aria-live="polite">&nbsp;</p>
-
-                <button type="button" class="btn btn--primary btn--large btn--full fb-continue" id="rating-continue"
-                    disabled>
-                    <span id="rating-continue-text">Continue</span>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </button>
+                <p class="sr-only" id="rating-kbd-hint">Use the arrow keys to choose a rating, then press Enter to
+                    continue.</p>
             </section>
 
             <!-- ================= STEP 2: Written feedback (1–4 stars) ================= -->

@@ -243,6 +243,25 @@ fieldset {
         radial-gradient(40rem 30rem at 100% 100%, rgb(3 36 73 / 0.08), transparent 70%);
 }
 
+/* The logo is a single flat blue (#188bf6) on transparency, which all but
+   vanishes against the pale blue page. A navy band behind it - the same
+   treatment the main site uses in its footer - gives it real contrast. */
+.fb-header {
+    position: relative;
+    z-index: 2;
+    background: var(--primary);
+    padding: var(--space-lg) var(--space-md);
+    display: flex;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+}
+
+.fb-logo img {
+    height: 34px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
 .fb-page {
     position: relative;
     z-index: 1;
@@ -254,15 +273,8 @@ fieldset {
     flex-direction: column;
     align-items: center;
     gap: var(--space-xl);
-    min-height: 100vh;
-    min-height: 100dvh;
-}
-
-.fb-logo img {
-    /* The brand mark is a 500x500 square with generous internal padding,
-       so it needs a larger box than a typical wordmark. */
-    height: clamp(80px, 20vw, 104px);
-    width: auto;
+    min-height: calc(100vh - 82px);
+    min-height: calc(100dvh - 82px);
 }
 
 .fb-card {
@@ -361,12 +373,12 @@ fieldset {
 }
 
 .fb-stars__label svg {
-    width: clamp(2.75rem, 12vw, 3.5rem);
-    height: clamp(2.75rem, 12vw, 3.5rem);
+    width: clamp(2.5rem, 11vw, 3.25rem);
+    height: clamp(2.5rem, 11vw, 3.25rem);
+    /* Flat fill, no outline - the outline plus the spring bounce was what made
+       these read as cartoonish. */
     fill: var(--gray-200);
-    stroke: var(--gray-300);
-    stroke-width: 1;
-    transition: fill var(--transition-fast), transform var(--transition-spring);
+    transition: fill var(--transition-base);
 }
 
 /* Filled state is driven by data-fill on the fieldset (JS sets it on hover + select) */
@@ -375,9 +387,7 @@ fieldset {
 .fb-stars[data-fill="3"] .fb-stars__label:nth-of-type(-n + 3) svg,
 .fb-stars[data-fill="4"] .fb-stars__label:nth-of-type(-n + 4) svg,
 .fb-stars[data-fill="5"] .fb-stars__label:nth-of-type(-n + 5) svg {
-    fill: #fbbf24;
-    stroke: #f59e0b;
-    transform: scale(1.06);
+    fill: #e8a33d;
 }
 
 /* The focus ring lands on the label because the radio input is visually hidden */
@@ -388,7 +398,7 @@ fieldset {
 
 @media (hover: hover) {
     .fb-stars__label:hover svg {
-        transform: scale(1.12);
+        opacity: 0.85;
     }
 }
 
@@ -399,21 +409,14 @@ fieldset {
     font-weight: 600;
     color: var(--gray-700);
     min-height: 1.75rem;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-sm);
 }
 
 .fb-stars-static {
     font-size: 2.5rem;
     letter-spacing: 0.15em;
-    color: #fbbf24;
+    color: #e8a33d;
     margin-bottom: var(--space-lg);
-}
-
-.fb-continue:disabled {
-    opacity: 0.4;
-    box-shadow: none;
-    cursor: not-allowed;
-    transform: none;
 }
 
 /* ===================================
@@ -456,7 +459,7 @@ fieldset {
 }
 
 .fb-rating-pill__stars {
-    color: #fbbf24;
+    color: #e8a33d;
     letter-spacing: 0.05em;
 }
 
