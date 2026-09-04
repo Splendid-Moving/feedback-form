@@ -1,0 +1,14 @@
+{
+    "name": "splendid-moving-feedback-form",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Customer feedback form for Splendid Moving. 5 stars routes to Google Reviews, 1-4 stars emails the office privately.",
+    "private": true,
+    "scripts": {
+        "dev": "vercel dev",
+        "build": "echo 'Static site - no build needed'",
+        "start": "python3 -m http.server 8000"
+    },
+    "author": "Splendid Moving",
+    "license": "UNLICENSED"
+}

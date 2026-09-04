@@ -1,0 +1,13 @@
+# Secrets - never commit
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel
+
+# OS junk
+.DS_Store
