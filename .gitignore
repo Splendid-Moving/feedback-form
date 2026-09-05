@@ -11,3 +11,8 @@ node_modules/
 
 # OS junk
 .DS_Store
+
+# Local render/preview scratch files
+_t_*.html
+_bg_*.html
+_v_*.html
