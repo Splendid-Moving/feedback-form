@@ -243,21 +243,25 @@ fieldset {
         radial-gradient(40rem 30rem at 100% 100%, rgb(3 36 73 / 0.08), transparent 70%);
 }
 
-/* The logo is a flat blue (#188bf6) stacked lockup. It disappears on the pale
-   page and turns to mush in a dark bar at nav size, so it lives on white at
-   the top of the card - the one place it has full contrast, and the only
-   column on the page. */
-.fb-brand {
-    text-align: center;
-    padding-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--gray-100);
-    margin-bottom: var(--space-xl);
+/* The logo needs a dark ground: 23% of its opaque pixels are near-white (the
+   arrow cut-outs inside the swoosh) so they vanish on white, and its blue is
+   only 3.46:1 against white versus 4.48:1 against this navy. Putting that
+   ground on the card itself keeps it on the same column as everything else. */
+.fb-card__head {
+    background: var(--primary);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.fb-brand img {
-    display: inline-block;
-    height: 40px;
+.fb-card__head img {
+    height: 42px;
     width: auto;
+}
+
+.fb-card__body {
+    padding: var(--space-2xl);
 }
 
 .fb-page {
@@ -281,10 +285,9 @@ fieldset {
        between the header and the footer instead of stranded at the top. */
     margin: auto 0;
     background: var(--white);
-    border: 1px solid var(--gray-200);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-xl);
-    padding: var(--space-2xl);
+    overflow: hidden;
 }
 
 .fb-footer {
@@ -637,17 +640,19 @@ fieldset {
     }
 
     .fb-card {
-        padding: var(--space-xl) var(--space-lg);
         border-radius: var(--radius-xl);
     }
 
-    .fb-brand {
-        padding-bottom: var(--space-md);
-        margin-bottom: var(--space-lg);
+    .fb-card__head {
+        padding: var(--space-lg) var(--space-md);
     }
 
-    .fb-brand img {
+    .fb-card__head img {
         height: 34px;
+    }
+
+    .fb-card__body {
+        padding: var(--space-xl) var(--space-lg);
     }
 
     .fb-stars {
