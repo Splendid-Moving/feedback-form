@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share your feedback about your move with Splendid Moving.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>How Did We Do? | Splendid Moving</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <div class="fb-bg" aria-hidden="true"></div>
+
+    <main class="fb-page">
+        <div class="fb-panel">
+
+            <!-- ================= STEP 1: Star rating ================= -->
+            <section class="fb-step" id="step-rating" aria-labelledby="step-rating-title">
+                <h1 class="fb-title" id="step-rating-title">How did we do?</h1>
+                <p class="fb-subtitle">Tap a star to rate your experience with Splendid Moving. It takes less than a
+                    minute.</p>
+
+                <fieldset class="fb-stars" id="stars">
+                    <legend class="sr-only">Rate your experience from 1 to 5 stars</legend>
+
+                    <input type="radio" name="rating" id="star-1" value="1" class="sr-only fb-stars__input">
+                    <label for="star-1" class="fb-stars__label" title="1 star – Terrible">
+                        <span class="sr-only">1 star</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
+                        </svg>
+                    </label>
+
+                    <input type="radio" name="rating" id="star-2" value="2" class="sr-only fb-stars__input">
+                    <label for="star-2" class="fb-stars__label" title="2 stars – Poor">
+                        <span class="sr-only">2 stars</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
+                        </svg>
+                    </label>
+
+                    <input type="radio" name="rating" id="star-3" value="3" class="sr-only fb-stars__input">
+                    <label for="star-3" class="fb-stars__label" title="3 stars – Okay">
+                        <span class="sr-only">3 stars</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
+                        </svg>
+                    </label>
+
+                    <input type="radio" name="rating" id="star-4" value="4" class="sr-only fb-stars__input">
+                    <label for="star-4" class="fb-stars__label" title="4 stars – Good">
+                        <span class="sr-only">4 stars</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
+                        </svg>
+                    </label>
+
+                    <input type="radio" name="rating" id="star-5" value="5" class="sr-only fb-stars__input">
+                    <label for="star-5" class="fb-stars__label" title="5 stars – Excellent">
+                        <span class="sr-only">5 stars</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12.00 1.40 L14.53 8.52 L22.08 8.72 L16.09 13.33 L18.23 20.58 L12.00 16.30 L5.77 20.58 L7.91 13.33 L1.92 8.72 L9.47 8.52 Z" />
+                        </svg>
+                    </label>
+                </fieldset>
+
+                <p class="fb-stars__caption" id="rating-caption" aria-live="polite">&nbsp;</p>
+                <p class="sr-only" id="rating-kbd-hint">Use the arrow keys to choose a rating, then press Enter to
+                    continue.</p>
+            </section>
+
+            <!-- ================= STEP 2: Written feedback (1–4 stars) ================= -->
+            <section class="fb-step" id="step-feedback" aria-labelledby="step-feedback-title" hidden>
+                <button type="button" class="fb-back" id="feedback-back">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Change rating
+                </button>
+
+                <p class="fb-eyebrow">Step 2 of 2</p>
+                <h2 class="fb-title" id="step-feedback-title">Tell us what happened</h2>
+
+                <div class="fb-rating-pill">
+                    <span class="fb-rating-pill__stars" id="rating-pill-stars"></span>
+                    <span id="rating-pill-label"></span>
+                </div>
+
+                <form class="fb-form" id="feedback-form" novalidate>
+                    <div class="field-row fb-form__row--2">
+                        <div class="field">
+                            <label class="field__label" for="fb-name">Your name</label>
+                            <input class="field__input" type="text" id="fb-name" name="name" autocomplete="name"
+                                maxlength="80" placeholder="Jane Doe">
+                        </div>
+                        <div class="field">
+                            <label class="field__label" for="fb-contact">Phone or email</label>
+                            <input class="field__input" type="text" id="fb-contact" name="contact" autocomplete="tel"
+                                maxlength="120" placeholder="(323) 555-0123">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="fb-message">
+                            What could we have done better? <span class="required">*</span>
+                        </label>
+                        <textarea class="field__textarea" id="fb-message" name="message" rows="6" maxlength="3000"
+                            required
+                            placeholder="Tell us about the crew, the timing, the pricing — anything that fell short."></textarea>
+                        <div class="fb-textarea__meta">
+                            <span class="field__hint">Optional fields help us follow up with you directly.</span>
+                            <span class="fb-counter" id="fb-counter">0 / 3000</span>
+                        </div>
+                    </div>
+
+                    <!-- Honeypot: hidden from humans, bots fill it in -->
+                    <div class="fb-hp" aria-hidden="true">
+                        <label for="fb-website">Website</label>
+                        <input type="text" id="fb-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <p class="fb-error" id="feedback-error" role="alert" hidden></p>
+
+                    <button type="submit" class="btn btn--primary btn--large btn--full fb-submit" id="feedback-submit">
+                        <span class="fb-submit__text">Send feedback</span>
+                        <span class="fb-spinner" aria-hidden="true"></span>
+                    </button>
+
+                </form>
+            </section>
+
+            <!-- ================= STEP 3: Redirecting to Google (5 stars) ================= -->
+            <section class="fb-step fb-step--center" id="step-redirect" aria-labelledby="step-redirect-title" hidden>
+                <div class="fb-stars-static" aria-hidden="true">★★★★★</div>
+                <h2 class="fb-title" id="step-redirect-title">Thank you!</h2>
+                <p class="fb-subtitle">We're so glad the move went well. Taking you to Google so you can share it
+                    publicly&hellip;</p>
+                <div class="fb-spinner fb-spinner--page" aria-hidden="true"></div>
+                <p class="fb-fallback">
+                    Not redirected automatically?
+                    <a href="#" id="google-link" target="_blank" rel="noopener">Open Google Reviews</a>
+                </p>
+            </section>
+
+            <!-- ================= STEP 4: Success (1–4 stars, submitted) ================= -->
+            <section class="fb-step fb-step--center" id="step-success" aria-labelledby="step-success-title" hidden>
+                <div class="fb-success-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                </div>
+                <h2 class="fb-title" id="step-success-title">Thank you for telling us</h2>
+                <p class="fb-subtitle">Your feedback is on its way to the owners. If you left your contact details,
+                    we'll reach out shortly to make things right.</p>
+                <div class="fb-success-actions">
+                    <a href="tel:+13236452636" class="btn btn--outline btn--large">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.37 1.73.7 2.54a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.81.33 1.66.57 2.54.7a2 2 0 0 1 1.71 2.06z" />
+                        </svg>
+                        (323) 645-2636
+                    </a>
+                    <a href="https://splendidmoving.com" class="btn btn--primary btn--large">Back to website</a>
+                </div>
+            </section>
+
+        </div>
+
+        <footer class="fb-footer">
+            <a href="tel:+13236452636" class="fb-footer__phone">(323) 645-2636</a>
+            <p>&copy; 2026 Splendid Moving &middot; Los Angeles, CA &middot; Fully licensed &amp; insured</p>
+        </footer>
+    </main>
+
+    <script src="scripts/feedback.js"></script>
+<script>window.addEventListener("load",function(){setTimeout(function(){var st=document.createElement('style');st.textContent='*{transition:none!important;animation:none!important}';document.head.appendChild(st);},150)})</script></body>
+
+</html>
