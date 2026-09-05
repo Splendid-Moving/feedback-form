@@ -243,63 +243,21 @@ fieldset {
         radial-gradient(40rem 30rem at 100% 100%, rgb(3 36 73 / 0.08), transparent 70%);
 }
 
-/* Header copied from the main site's inner pages (.header.header--solid):
-   translucent dark slate with a blur, logo left in brand blue, phone right. */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 200;
-    padding: var(--space-sm) 0;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow-lg);
+/* The logo is a flat blue (#188bf6) stacked lockup. It disappears on the pale
+   page and turns to mush in a dark bar at nav size, so it lives on white at
+   the top of the card - the one place it has full contrast, and the only
+   column on the page. */
+.fb-brand {
+    text-align: center;
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: var(--space-xl);
 }
 
-.nav {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-md);
-}
-
-.nav__logo {
-    display: flex;
-    align-items: center;
-}
-
-.nav__logo-img {
-    /* The source PNG is trimmed to its content, so this is the true wordmark
-       height - it matches how the logo reads on the main site's header. */
-    height: 30px;
+.fb-brand img {
+    display: inline-block;
+    height: 40px;
     width: auto;
-}
-
-.nav__phone {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    font-weight: 600;
-    font-size: 0.9375rem;
-    color: var(--white);
-    white-space: nowrap;
-    transition: color var(--transition-fast);
-}
-
-.nav__phone .icon {
-    width: 1.125rem;
-    height: 1.125rem;
-}
-
-.nav__phone:hover {
-    color: var(--secondary-light);
 }
 
 .fb-page {
@@ -313,7 +271,6 @@ fieldset {
     flex-direction: column;
     align-items: center;
     gap: var(--space-xl);
-    padding-top: calc(48px + var(--space-2xl));
     min-height: 100vh;
     min-height: 100dvh;
 }
@@ -334,6 +291,22 @@ fieldset {
     text-align: center;
     font-size: 0.8125rem;
     color: var(--gray-500);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.fb-footer__phone {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    transition: color var(--transition-fast);
+}
+
+.fb-footer__phone:hover {
+    color: var(--secondary);
 }
 
 /* ===================================
@@ -604,6 +577,9 @@ fieldset {
 }
 
 .fb-fallback a {
+    /* Own line so "Open Google Reviews" never breaks mid-phrase on narrow screens */
+    display: block;
+    margin-top: var(--space-xs);
     color: var(--secondary);
     font-weight: 600;
     text-decoration: underline;
@@ -655,26 +631,23 @@ fieldset {
 }
 
 @media (max-width: 640px) {
-    .nav {
-        padding: 0 var(--space-md);
-    }
-
-    .nav__logo-img {
-        height: 26px;
-    }
-
-    .nav__phone {
-        font-size: 0.875rem;
-    }
-
     .fb-page {
-        padding: calc(44px + var(--space-xl)) var(--space-md) var(--space-lg);
+        padding: var(--space-xl) var(--space-md) var(--space-lg);
         gap: var(--space-lg);
     }
 
     .fb-card {
         padding: var(--space-xl) var(--space-lg);
         border-radius: var(--radius-xl);
+    }
+
+    .fb-brand {
+        padding-bottom: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+
+    .fb-brand img {
+        height: 34px;
     }
 
     .fb-stars {
