@@ -5,7 +5,8 @@ A one-page feedback funnel. The customer rates the move from 1 to 5 stars:
 - **5 stars** → redirected to the Splendid Moving Google Reviews page to post publicly.
 - **1–4 stars** → shown a private form; the message is emailed straight to the office.
 
-Design matches [splendidmoving.com](https://splendidmoving.com) — same brand colors, fonts and button styles.
+Light, minimal theme — no logo, brand fonts (Space Grotesk / Plus Jakarta Sans)
+and brand blue carried over from [splendidmoving.com](https://splendidmoving.com).
 
 ## Layout
 
@@ -14,7 +15,7 @@ index.html               The page (all four screens live here)
 styles/styles.css        Brand tokens + page styles (self-contained)
 scripts/feedback.js      Star logic and the 5-star / 1-4 star split
 api/submit-feedback.js   Vercel serverless function that sends the email via Resend
-assets/images/           Logo and favicon
+assets/images/           Favicon
 ```
 
 ## Setup

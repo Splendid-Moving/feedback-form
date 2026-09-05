@@ -14,6 +14,11 @@
     --accent: #f6f9ff;
     --white: #ffffff;
 
+    /* Minimal light theme: a soft off-white ground and a near-black ink,
+       so the page reads clean rather than blue-tinted. */
+    --paper: #f6f7f9;
+    --ink: #10151f;
+
     --gray-50: #f8fafc;
     --gray-100: #f1f5f9;
     --gray-200: #e2e8f0;
@@ -80,7 +85,7 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--gray-800);
-    background-color: var(--accent);
+    background-color: var(--paper);
     overflow-x: hidden;
 }
 
@@ -117,7 +122,7 @@ fieldset {
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
-    padding: 0.875rem 1.75rem;
+    padding: 0.9375rem 1.75rem;
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 600;
@@ -132,18 +137,16 @@ fieldset {
 }
 
 .btn--primary {
-    background: var(--gradient-accent);
+    background: var(--secondary);
     color: var(--white);
-    box-shadow: var(--shadow-md), var(--shadow-glow);
 }
 
 .btn--primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg), 0 0 60px rgb(24 139 246 / 0.4);
+    background: #0d78dd;
 }
 
 .btn--outline {
-    border: 2px solid var(--gray-200);
+    border: 1px solid var(--gray-200);
     color: var(--gray-700);
     background: var(--white);
 }
@@ -185,9 +188,9 @@ fieldset {
 }
 
 .field__label {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    color: var(--gray-800);
+    color: var(--gray-700);
 }
 
 .field__label .required {
@@ -197,14 +200,14 @@ fieldset {
 .field__input,
 .field__textarea {
     width: 100%;
-    padding: var(--space-md);
+    padding: 0.875rem var(--space-md);
     font-family: var(--font-body);
     font-size: 1rem;
-    color: var(--gray-800);
+    color: var(--ink);
     background: var(--white);
     border: 1px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .field__input:focus,
@@ -233,78 +236,53 @@ fieldset {
    Page shell
    =================================== */
 
+/* A single soft wash from the top keeps the page from reading as dead flat
+   without adding any chrome. */
 .fb-bg {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background:
-        radial-gradient(60rem 40rem at 50% -10%, rgb(24 139 246 / 0.16), transparent 70%),
-        radial-gradient(40rem 30rem at 100% 100%, rgb(3 36 73 / 0.08), transparent 70%);
-}
-
-/* The logo needs a dark ground: 23% of its opaque pixels are near-white (the
-   arrow cut-outs inside the swoosh) so they vanish on white, and its blue is
-   only 3.46:1 against white versus 4.48:1 against this navy. Putting that
-   ground on the card itself keeps it on the same column as everything else. */
-.fb-card__head {
-    background: var(--primary);
-    padding: var(--space-xl) var(--space-lg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fb-card__head img {
-    height: 42px;
-    width: auto;
-}
-
-.fb-card__body {
-    padding: var(--space-2xl);
+    background: radial-gradient(48rem 28rem at 50% -4rem, var(--white), transparent 72%);
 }
 
 .fb-page {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 42rem;
+    max-width: 34rem;
     margin: 0 auto;
-    padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    padding: var(--space-3xl) var(--space-lg) var(--space-xl);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xl);
+    gap: var(--space-2xl);
     min-height: 100vh;
     min-height: 100dvh;
 }
 
-.fb-card {
+.fb-panel {
     width: 100%;
-    /* Auto margins split the leftover height evenly, so the card sits centred
-       between the header and the footer instead of stranded at the top. */
+    /* Auto margins split the leftover height, so the content sits optically
+       centred rather than pinned to the top of a tall screen. */
     margin: auto 0;
-    background: var(--white);
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-xl);
-    overflow: hidden;
 }
 
 .fb-footer {
-    text-align: center;
-    font-size: 0.8125rem;
-    color: var(--gray-500);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-xs);
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--gray-400);
 }
 
 .fb-footer__phone {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--gray-700);
     transition: color var(--transition-fast);
 }
 
@@ -351,17 +329,18 @@ fieldset {
 
 .fb-title {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    font-size: clamp(1.875rem, 6vw, 2.5rem);
     font-weight: 700;
-    line-height: 1.15;
-    color: var(--gray-900);
-    margin-bottom: var(--space-sm);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: var(--space-md);
 }
 
 .fb-subtitle {
     font-size: 1.0625rem;
-    color: var(--gray-600);
-    line-height: 1.6;
+    color: var(--gray-500);
+    line-height: 1.65;
 }
 
 /* ===================================
@@ -376,8 +355,8 @@ fieldset {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(0.25rem, 2vw, var(--space-sm));
-    margin: var(--space-2xl) 0 var(--space-md);
+    gap: clamp(0.25rem, 2vw, var(--space-md));
+    margin: var(--space-3xl) 0 var(--space-lg);
 }
 
 .fb-stars__label {
@@ -392,11 +371,11 @@ fieldset {
 }
 
 .fb-stars__label svg {
-    width: clamp(2.5rem, 11vw, 3.25rem);
-    height: clamp(2.5rem, 11vw, 3.25rem);
+    width: clamp(2.75rem, 12vw, 3.5rem);
+    height: clamp(2.75rem, 12vw, 3.5rem);
     /* Flat fill, no outline - the outline plus the spring bounce was what made
        these read as cartoonish. */
-    fill: var(--gray-200);
+    fill: #e3e6ec;
     transition: fill var(--transition-base);
 }
 
@@ -426,13 +405,13 @@ fieldset {
     font-family: var(--font-display);
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--gray-700);
+    color: var(--ink);
     min-height: 1.75rem;
     margin-bottom: var(--space-sm);
 }
 
 .fb-stars-static {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     letter-spacing: 0.15em;
     color: #e8a33d;
     margin-bottom: var(--space-lg);
@@ -468,7 +447,7 @@ fieldset {
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-sm) var(--space-md);
-    background: var(--gray-50);
+    background: var(--white);
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-full);
     margin: var(--space-lg) 0 var(--space-xl);
@@ -592,21 +571,23 @@ fieldset {
    Success
    =================================== */
 
+/* A soft tint rather than a saturated disc - a solid green badge was the one
+   loud element in an otherwise quiet palette. */
 .fb-success-icon {
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 64px;
     margin: 0 auto var(--space-xl);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    background: #e7f6ed;
     border-radius: var(--radius-full);
-    color: var(--white);
+    color: #129d54;
 }
 
 .fb-success-icon svg {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.875rem;
+    height: 1.875rem;
 }
 
 .fb-success-actions {
@@ -639,25 +620,9 @@ fieldset {
         gap: var(--space-lg);
     }
 
-    .fb-card {
-        border-radius: var(--radius-xl);
-    }
-
-    .fb-card__head {
-        padding: var(--space-lg) var(--space-md);
-    }
-
-    .fb-card__head img {
-        height: 34px;
-    }
-
-    .fb-card__body {
-        padding: var(--space-xl) var(--space-lg);
-    }
-
     .fb-stars {
         gap: 0;
-        margin-top: var(--space-xl);
+        margin-top: var(--space-2xl);
     }
 
     .fb-stars__label {
