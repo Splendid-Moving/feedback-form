@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    var GOOGLE_REVIEW_URL = 'https://www.google.com/maps/place//data=!4m3!3m2!1s0x2d2dabf6cb6037b3:0x42c4cfb114791e9c!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2';
+    var GOOGLE_REVIEW_URL = 'https://g.page/r/CZweeRSxz8RCEBM/review';
     var REDIRECT_DELAY_MS = 1200;
     var ADVANCE_DELAY_MS = 450; // long enough to see the star fill and read the caption
     var MIN_FILL_TIME_MS = 3000; // anything faster than this is a bot, not a customer
