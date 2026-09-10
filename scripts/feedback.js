@@ -25,6 +25,14 @@
 
     var loadedAt = Date.now();
 
+    // Details Make.com puts in the link (?n=first+name&c=email) so the customer doesn't
+    // retype them and the office knows which move the feedback belongs to.
+    var linkParams = new URLSearchParams(window.location.search);
+    var fromLink = {
+        name: (linkParams.get('n') || '').trim().slice(0, 80),
+        contact: (linkParams.get('c') || '').trim().slice(0, 120)
+    };
+
     // --- Elements -----------------------------------------------------------
     var steps = {
         rating: document.getElementById('step-rating'),
@@ -39,6 +47,8 @@
 
     var backBtn = document.getElementById('feedback-back');
     var form = document.getElementById('feedback-form');
+    var nameEl = document.getElementById('fb-name');
+    var contactEl = document.getElementById('fb-contact');
     var messageEl = document.getElementById('fb-message');
     var counter = document.getElementById('fb-counter');
     var errorEl = document.getElementById('feedback-error');
@@ -53,6 +63,15 @@
     var pointerSelected = false;  // true when the change came from a tap/click, not the keyboard
 
     googleLink.href = GOOGLE_REVIEW_URL;
+
+    if (fromLink.name) nameEl.value = fromLink.name;
+    if (fromLink.contact) contactEl.value = fromLink.contact;
+
+    // Drop the query string once it's been read, so the customer's email isn't sitting
+    // in the address bar and can't ride along to Google in the referrer header.
+    if (window.history.replaceState && window.location.search) {
+        window.history.replaceState({}, '', window.location.pathname);
+    }
 
     // --- Helpers ------------------------------------------------------------
 
@@ -77,6 +96,27 @@
 
     // --- Step 1: rating -----------------------------------------------------
 
+    // 5-star customers never submit the form - they leave for Google - so the office
+    // would never hear about them. Ping the server before the redirect instead.
+    // keepalive lets the request finish even though the page is unloading.
+    function trackRedirect() {
+        if (document.getElementById('fb-website').value) return; // bot filled the honeypot
+
+        try {
+            window.fetch('/api/submit-feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                keepalive: true,
+                body: JSON.stringify({
+                    kind: 'redirect',
+                    rating: 5,
+                    name: fromLink.name,
+                    contact: fromLink.contact
+                })
+            })['catch'](function () { /* never let this block the redirect */ });
+        } catch (e) { /* same */ }
+    }
+
     // Sends the customer down one of the two paths. 5 stars goes public on Google,
     // everything else opens the private form.
     function route() {
@@ -85,6 +125,7 @@
 
         window.setTimeout(function () {
             if (selectedRating === 5) {
+                trackRedirect();
                 showStep('redirect');
                 window.setTimeout(function () {
                     window.location.href = GOOGLE_REVIEW_URL;
@@ -188,11 +229,13 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                kind: 'feedback',
                 rating: selectedRating,
-                name: document.getElementById('fb-name').value.trim(),
-                contact: document.getElementById('fb-contact').value.trim(),
+                name: nameEl.value.trim(),
+                contact: contactEl.value.trim(),
                 message: message,
-                pageUrl: window.location.href
+                linkName: fromLink.name,
+                linkContact: fromLink.contact
             })
         })
             .then(function (res) {
