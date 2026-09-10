@@ -27,10 +27,25 @@
 
     // Details Make.com puts in the link (?n=first+name&c=email) so the customer doesn't
     // retype them and the office knows which move the feedback belongs to.
+    // Read 'c' off the raw query string rather than through URLSearchParams, which
+    // treats a literal '+' as a space and would quietly turn jane+moving@gmail.com
+    // into 'jane moving@gmail.com'. This way the address survives whether or not
+    // the sender percent-encoded the plus. 'n' is a first name, where '+' really
+    // does mean a space, so that one keeps the normal behaviour.
+    function rawParam(key) {
+        var match = new RegExp('[?&]' + key + '=([^&]*)').exec(window.location.search);
+        if (!match) return '';
+        try {
+            return decodeURIComponent(match[1]);
+        } catch (e) {
+            return ''; // malformed escape - better to prefill nothing than garbage
+        }
+    }
+
     var linkParams = new URLSearchParams(window.location.search);
     var fromLink = {
         name: (linkParams.get('n') || '').trim().slice(0, 80),
-        contact: (linkParams.get('c') || '').trim().slice(0, 120)
+        contact: rawParam('c').trim().slice(0, 120)
     };
 
     // --- Elements -----------------------------------------------------------
