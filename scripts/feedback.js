@@ -125,8 +125,8 @@
                 body: JSON.stringify({
                     kind: 'redirect',
                     rating: 5,
-                    name: fromLink.name,
-                    contact: fromLink.contact
+                    linkName: fromLink.name,
+                    linkContact: fromLink.contact
                 })
             })['catch'](function () { /* never let this block the redirect */ });
         } catch (e) { /* same */ }
