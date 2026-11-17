@@ -149,16 +149,42 @@
             </section>
 
             <!-- ================= STEP 3: Redirecting to Google (5 stars) ================= -->
+            <!-- Deliberately NOT a "thank you" screen: customers read "thank you" as the end
+                 and closed the tab before reaching Google. This one says the job isn't done yet. -->
             <section class="fb-step fb-step--center" id="step-redirect" aria-labelledby="step-redirect-title" hidden>
-                <div class="fb-stars-static" aria-hidden="true">★★★★★</div>
-                <h2 class="fb-title" id="step-redirect-title">Thank you!</h2>
-                <p class="fb-subtitle">We're so glad the move went well. Taking you to Google so you can share it
-                    publicly&hellip;</p>
-                <div class="fb-spinner fb-spinner--page" aria-hidden="true"></div>
-                <p class="fb-fallback">
-                    Not redirected automatically?
-                    <a href="#" id="google-link" target="_blank" rel="noopener">Open Google Reviews</a>
-                </p>
+                <p class="fb-eyebrow">One last step</p>
+                <h2 class="fb-title" id="step-redirect-title">Please post your 5 stars on Google</h2>
+                <p class="fb-subtitle">Your rating isn't public yet. Posting it on Google takes about 30 seconds
+                    and helps other families find a mover they can trust.</p>
+
+                <div class="fb-handoff" aria-hidden="true">
+                    <div class="fb-handoff__badge fb-handoff__badge--us">★</div>
+                    <div class="fb-handoff__track">
+                        <div class="fb-handoff__fill" id="handoff-fill"></div>
+                    </div>
+                    <div class="fb-handoff__badge">
+                        <svg viewBox="0 0 48 48">
+                            <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z" />
+                            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
+                            <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z" />
+                            <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="fb-handoff__status" aria-live="polite">Opening Google Reviews&hellip;</p>
+
+                <ol class="fb-next-steps">
+                    <li><span class="fb-next-steps__number">1</span><span>Tap the 5 stars</span></li>
+                    <li><span class="fb-next-steps__number">2</span><span>Write a sentence or two</span></li>
+                    <li><span class="fb-next-steps__number">3</span><span>Tap <strong>Post</strong></span></li>
+                </ol>
+
+                <a href="#" id="google-link" class="btn btn--primary btn--large btn--full">
+                    Write my Google review
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
             </section>
 
             <!-- ================= STEP 4: Success (1–4 stars, submitted) ================= -->

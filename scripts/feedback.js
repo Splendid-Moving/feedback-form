@@ -4,7 +4,9 @@
     'use strict';
 
     var GOOGLE_REVIEW_URL = 'https://g.page/r/CZweeRSxz8RCEBM/review';
-    var REDIRECT_DELAY_MS = 1200;
+    // Long enough to read "one last step" and the three steps, short enough not to feel stuck.
+    // The progress bar on the screen runs for exactly this long.
+    var REDIRECT_DELAY_MS = 4000;
     var ADVANCE_DELAY_MS = 450; // long enough to see the star fill and read the caption
     var MIN_FILL_TIME_MS = 3000; // anything faster than this is a bot, not a customer
 
@@ -72,10 +74,12 @@
     var pillStars = document.getElementById('rating-pill-stars');
     var pillLabel = document.getElementById('rating-pill-label');
     var googleLink = document.getElementById('google-link');
+    var handoffFill = document.getElementById('handoff-fill');
 
     var selectedRating = 0;
     var advancing = false;        // guards against a double-tap firing the route twice
     var pointerSelected = false;  // true when the change came from a tap/click, not the keyboard
+    var redirectTimer = null;
 
     googleLink.href = GOOGLE_REVIEW_URL;
 
@@ -132,6 +136,18 @@
         } catch (e) { /* same */ }
     }
 
+    // Restarts the progress bar from empty so it fills over REDIRECT_DELAY_MS.
+    function startHandoffBar() {
+        handoffFill.style.animation = 'none';
+        void handoffFill.offsetWidth; // forces the browser to forget the old animation
+        handoffFill.style.animation = 'fb-handoff-fill ' + REDIRECT_DELAY_MS + 'ms linear forwards';
+    }
+
+    // Tapping the button goes now; cancel the timer so it can't fire a second navigation.
+    googleLink.addEventListener('click', function () {
+        window.clearTimeout(redirectTimer);
+    });
+
     // Sends the customer down one of the two paths. 5 stars goes public on Google,
     // everything else opens the private form.
     function route() {
@@ -142,7 +158,8 @@
             if (selectedRating === 5) {
                 trackRedirect();
                 showStep('redirect');
-                window.setTimeout(function () {
+                startHandoffBar();
+                redirectTimer = window.setTimeout(function () {
                     window.location.href = GOOGLE_REVIEW_URL;
                 }, REDIRECT_DELAY_MS);
                 return;

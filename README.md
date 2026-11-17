@@ -2,7 +2,9 @@
 
 A one-page feedback funnel. The customer rates the move from 1 to 5 stars:
 
-- **5 stars** → redirected to the Splendid Moving Google Reviews page to post publicly.
+- **5 stars** → a "one last step" screen (progress bar, the three things to do on Google, and a
+  *Write my Google review* button), then an automatic redirect to Google Reviews after 4 seconds.
+  It deliberately doesn't say "thank you": customers read that as the end and closed the tab.
 - **1–4 stars** → shown a private form; the message is emailed straight to the office.
 
 Light, minimal theme — no logo, brand fonts (Space Grotesk / Plus Jakarta Sans)
