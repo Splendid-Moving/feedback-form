@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-26 — Simple Flow footer credit
+- Changed: added “Built by Simple Flow” beneath the footer, linking to `https://simple-flow.co` in a new tab; documented the separate Splendid Moving Vercel login folder.
+- Verified: local and production browser screenshots at desktop 1440×900 and mobile 390×844; credit is visible, the link is correct, and mobile has no horizontal overflow. `git diff --check` passed.
+- Deployed: Vercel production is READY at `https://feedback.splendidmoving.com`, using the separate Splendid Moving CLI login.
+
 ## 2026-11-16 — 5-star screen pushes customers through to Google
 - Changed: replaced the "Thank you!" + spinner screen shown before the Google redirect with a "One last step" screen: progress bar (our star → Google), a 3-step preview of what to do on Google, and a big "Write my Google review" button. Auto-redirect delay raised from 1.2s to 4s so the screen can be read; the bar runs for the same time. Why: many 5-star customers read "Thank you" as done and left before reaching Google.
 - Removed: CSS for the old spinner/fallback-link screen.

@@ -43,6 +43,17 @@ Then open http://localhost:3000. Submitting a 1–4 star rating sends a real ema
 
 `npm start` serves the static page on port 8000, but the email endpoint will not work.
 
+## Vercel account
+
+Keep Splendid Moving's CLI login in `../.vercel-auth`, separate from the workspace-root account.
+Always pass that folder when running Vercel commands from this project:
+
+```bash
+vercel --global-config ../.vercel-auth login
+vercel --global-config ../.vercel-auth whoami
+vercel --global-config ../.vercel-auth --prod
+```
+
 ## Tracked links
 
 The thank-you email (sent from Make.com) links here with the customer's details attached:

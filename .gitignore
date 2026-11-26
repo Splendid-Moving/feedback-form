@@ -16,3 +16,4 @@ node_modules/
 _t_*.html
 _bg_*.html
 _v_*.html
+.env*
